@@ -62,7 +62,7 @@ class Nerd():
 
         # second, make sure you have the relations extracted
         if not self.relations:
-            self.relations = module_rels.extract_relations(self.references, word_list)
+            self.relations = module_rels.extract_relations(self.references, self.word_list)
         return self.relations
 
 
@@ -107,16 +107,27 @@ if __name__ == "__main__":
             Testament van Huwelijkse voorwaardes tussen ijsken dochter PeterAdriaenGerits van de Loo inwoner St. Michielsgestel met Lijsken 
             dochter Dirck Janssen van den Oetelaer, eerder weduwe van Joffrouw =Jan Wouter Goijaerts en daarvoor weduwe van 
             Willem Gerits, inwoonster Den Bosch. 1ABC 11.
+
+            Codicil op  eerder testament van Joffrouw Margriet van Etten weduwe van Johan de Coenen.
+            Haar zoon is  jonker Johan de Coenen. Vermaakt aan de 2 kinderen van haar dochter joffrouw Anna verwekt bij
+            jonker Joost van Vladeracken bepaald linnengoed. Haar dochter Adriana die is getrouwd met jonker Willem van
+            Vlierden en jofrrouw Honoria die is getrouwd met jonker Carl van Vlierden krijgen ook nog spullen. Heeft bezit
+            onder Massenhoven in kwartier Antwerpen. Actum in haar huis te Zegenwerp"
+
             """
 
     nerd = Nerd(text1)
 
     print "\nTEXT\n", nerd.pp_text
 
-    print "\nEXTRACTIONS"
+    print "\nNAME EXTRACTIONS"
 
     for ref in nerd.get_references():
         print ref['given_name'], '|', ref['prefix'], '|', ref['family_name']
+
+    print "\nRELATION EXTRACTIONS"
+    for rel in nerd.get_relations():
+        print rel
 
     print "\nHTML OUTPUT"
     print nerd.get_highlighted_text()
