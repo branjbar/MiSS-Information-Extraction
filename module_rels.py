@@ -40,16 +40,31 @@ def extract_relations(references, word_list):
     relations = []
     for index1, ref1 in enumerate(references):
         for index2, ref2 in enumerate(references):
+
+            start_of_ref1 = ref1['position_in_processed_test']
+            end_of_ref1 = ref1['position_in_processed_test'] + \
+                          len(ref1['given_name'].split())+ \
+                          len(ref1['prefix'].split()) + \
+                          len(ref1['family_name'].split())
+            start_of_ref2 = ref2['position_in_processed_test']
+            end_of_ref2 = ref2['position_in_processed_test'] + \
+                          len(ref2['given_name'].split())+ \
+                          len(ref2['prefix'].split()) + \
+                          len(ref2['family_name'].split())
+
             if index2 == index1 + 1:
-                term = ' '.join(word_list[ref1[0] + len(ref1[1].split()): ref2[0]])
+                term = ' '.join(word_list[end_of_ref1: start_of_ref2])
                 if term in RELATION_INDICATORS_MIDDLE.keys():
                     relations.append(
                         {"ref1": ref1, "ref2": ref2, "relation": RELATION_INDICATORS_MIDDLE[term]})
 
+
+
+
                 # to detect relations in patterns like "Gerrit Hendrix en Hendersken Thijssen echtelieden"
                 try:
-                    term1 = ' '.join(word_list[ref1[0] + len(ref1[1].split()):ref2[0]])
-                    term2 = word_list[len(ref2[1].split()) + ref2[0]]
+                    term1 = ' '.join(word_list[end_of_ref1: start_of_ref2])
+                    term2 = word_list[end_of_ref1]
                     if term1 == "en" and (term2 == "echtelieden" or term2 == "e"):
                         relations.append({"ref1": ref1, "ref2": ref2, "relation": "husband of"})
                 except:
@@ -57,9 +72,9 @@ def extract_relations(references, word_list):
 
                 # detect relations in patterns like "Jorden Thomassen en Catharina Hendriks zijn vrouw"
                 try:
-                    term1 = ' '.join(word_list[ref1[0] + len(ref1[1].split()):ref2[0]])
+                    term1 = ' '.join(word_list[end_of_ref1: start_of_ref2])
                     term2 = ' '.join(
-                        word_list[len(ref2[1].split()) + ref2[0]: len(ref2[1].split()) + ref2[0] + 2])
+                        word_list[end_of_ref2: end_of_ref2 + 2])
                     if term1 == "en" and term2 == "zijn vrouw":
                         relations.append({"ref1": ref1, "ref2": ref2, "relation": "husband of"})
                 except:
@@ -68,8 +83,8 @@ def extract_relations(references, word_list):
                 # detect relations in like "kinderen van Johannes Janse Smits en Antonetta Jan Roeloff Donckers"
                 try:
                     term1 = ' '.join(
-                        word_list[ref1[0] - 2:ref1[0]])
-                    term2 = ' '.join(word_list[ref1[0] + len(ref1[1].split()):ref2[0]])
+                        word_list[start_of_ref1 - 2:start_of_ref1])
+                    term2 = ' '.join(word_list[end_of_ref1:start_of_ref2])
                     if [term1, term2] in RELATION_INDICATORS_BEFORE_MIDDLE:
                         relations.append({"ref1": ref1, "ref2": ref2, "relation": "married with"})
                 except:
