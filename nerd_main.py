@@ -114,6 +114,7 @@ if __name__ == "__main__":
             Vlierden en jofrrouw Honoria die is getrouwd met jonker Carl van Vlierden krijgen ook nog spullen. Heeft bezit
             onder Massenhoven in kwartier Antwerpen. Actum in haar huis te Zegenwerp"
 
+
             """
 
     nerd = Nerd(text1)
