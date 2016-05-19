@@ -73,8 +73,7 @@ def extract_relations(references, word_list):
                 # detect relations in patterns like "Jorden Thomassen en Catharina Hendriks zijn vrouw"
                 try:
                     term1 = ' '.join(word_list[end_of_ref1: start_of_ref2])
-                    term2 = ' '.join(
-                        word_list[end_of_ref2: end_of_ref2 + 2])
+                    term2 = ' '.join(word_list[end_of_ref2: end_of_ref2 + 2])
                     if term1 == "en" and term2 == "zijn vrouw":
                         relations.append({"ref1": ref1, "ref2": ref2, "relation": "husband of"})
                 except:
@@ -82,8 +81,7 @@ def extract_relations(references, word_list):
 
                 # detect relations in like "kinderen van Johannes Janse Smits en Antonetta Jan Roeloff Donckers"
                 try:
-                    term1 = ' '.join(
-                        word_list[start_of_ref1 - 2:start_of_ref1])
+                    term1 = ' '.join(word_list[start_of_ref1 - 2:start_of_ref1])
                     term2 = ' '.join(word_list[end_of_ref1:start_of_ref2])
                     if [term1, term2] in RELATION_INDICATORS_BEFORE_MIDDLE:
                         relations.append({"ref1": ref1, "ref2": ref2, "relation": "married with"})
