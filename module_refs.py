@@ -50,7 +50,7 @@ def extract_references(word_list, word_list_labeled, unique_id):
                                 ';' + '; '.join(ref) + "; Given name is invalid \n")
 
                         # mean names are unforgivable
-                if ref[0].split() and ref[0].split()[0] in import_db.list_of_mean_names:
+                if ref[0].split() and ref[0].split()[0] in import_db.list_of_starting_words:
                     # store the error in a log file
                     with open('error_log.csv', 'a') as f:
                         f.write("ERROR;" + str(unique_id) + ';' +
