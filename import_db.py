@@ -30,12 +30,6 @@ def init():
 			word = line.replace('"', '').replace("'", '').strip()
 			list_of_mean_names.append(word)
 
-	global misleading_starting_names
-	misleading_starting_names = []
-	with open("db/misleading_starting_words.txt", 'r') as f:
-		for line in f:
-			word = line.replace('"', '').replace("'", '').strip()
-			misleading_starting_names.append(word)
 
 if __name__ == "__main__":
 	init()
