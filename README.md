@@ -31,9 +31,9 @@ nerd.get_highlighted_text()
 * `module_refs` contains the code for using the tagged words to extract relations
 * `module_rels` contains the code for detecting the husband-wife relationships
 * `/db`-folder contains some dictionaries required to extract the names from text
-..* `first_name.txt`: list of frequent first names in Dutch
-..* `last_name_multiple.txt`: list of commong last names that consist of more than one word
-..* `starting_words.py` list of the words that start a sentence and can be problematic in detecting the correct pattern of names
+... `first_name.txt`: list of frequent first names in Dutch
+... `last_name_multiple.txt`: list of commong last names that consist of more than one word
+... `starting_words.py` list of the words that start a sentence and can be problematic in detecting the correct pattern of names
 
 
 ## Evaluations
