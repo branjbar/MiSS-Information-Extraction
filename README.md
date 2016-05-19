@@ -1,5 +1,5 @@
 # MiSS Information Extraction
-The code provided here allows for extraction of names and household relationships from notarial acts written in Dutch language.
+The code provided here allows for extraction of names and husband-wife relationships from notarial acts written in Dutch language.
 
 ## How to use this code
 
