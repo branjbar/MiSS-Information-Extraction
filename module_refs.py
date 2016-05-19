@@ -12,7 +12,7 @@ def extract_references(word_list, word_list_labeled, unique_id):
     # need_last_name_flag = False
     for index, word in enumerate(word_list):
         if (reference and word_list_labeled[index] in [1, 2]
-            or not reference and word_list_labeled[index] in [1]):  # if refernce is empty we should start with a name
+            or not reference and word_list_labeled[index] in [1]):  # if reference is empty we should start with a name
             reference += word + ' '
         else:
             reference = reference.strip().decode("ISO-8859-1").encode('utf8', 'ignore')
